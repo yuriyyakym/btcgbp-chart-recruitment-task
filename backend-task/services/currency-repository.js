@@ -1,6 +1,6 @@
 const request = require('request-promise');
 
-const REFRESH_FREQUENCY = 30000;
+const REFRESH_DETAILS_TIMEOUT = 30000;
 const CURRENCY_PAIR_DETAILS_ENDPOINT = 'https://api.bitfinex.com/v1/pubticker';
 
 class CurrencyRepository {
@@ -11,7 +11,7 @@ class CurrencyRepository {
     this.fetchPairsDetails = this.fetchPairsDetails.bind(this);
 
     this.fetchPairsDetails();
-    setInterval(this.fetchPairsDetails, REFRESH_FREQUENCY);
+    setInterval(this.fetchPairsDetails, REFRESH_DETAILS_TIMEOUT);
   }
 
   fetchPairsDetails() {

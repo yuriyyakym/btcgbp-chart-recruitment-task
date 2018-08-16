@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
@@ -29,7 +30,8 @@
       "env": {
         "NODE_ENV": "production",
         "PORT": "80",
-        "HOST": "0.0.0.0"
+        "HOST": "0.0.0.0",
+        "ORIGINS": "http://127.0.0.1:3001"
       }
     }
   }
