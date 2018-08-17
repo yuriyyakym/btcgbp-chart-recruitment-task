@@ -10,7 +10,7 @@ export const selectCurrentPair = createSelector(
 
 export const selectTimeseries = createSelector(
   selectRoot,
-  ({ timeseries }) => timeseries.map((point) => console.log(point) || ({
+  ({ timeseries }) => timeseries.map((point) => ({
     value: point.mid,
     timestamp: point.timestamp
   }))
