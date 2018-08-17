@@ -1,8 +1,12 @@
 const express = require('express');
-const { getCurrencyPairMarketDetails } = require('./controllers/currency-market');
+const {
+  getActualCurrencyPairMarketDetails,
+  getHistoricalCurrencyPairMarketDetails
+} = require('./controllers/currency-market');
 
 const router = express.Router();
 
-router.get('/api/pair/:pair', getCurrencyPairMarketDetails);
+router.get('/api/pair/:pair', getActualCurrencyPairMarketDetails);
+router.get('/api/pair/historical/:pair', getHistoricalCurrencyPairMarketDetails);
 
 module.exports = router;
