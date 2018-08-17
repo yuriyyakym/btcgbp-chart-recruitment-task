@@ -52,8 +52,6 @@ export const selectTrendChangePercentage = createSelector(
       return null;
     }
 
-    console.log(lastPoint, nextToLastPoint);
-
     return (lastPoint.value - nextToLastPoint.value) / nextToLastPoint.value * 100;
   }
 );
