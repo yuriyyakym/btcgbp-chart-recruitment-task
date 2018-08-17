@@ -10,10 +10,10 @@ const getActualCurrencyPairMarketDetails = async (request, response) => {
   }
 };
 
-const getHistoricalCurrencyPairMarketDetails = async (request, response) => {
+const getHistoricalCurrencyPairMarketDetails = (request, response) => {
   const { pair } = request.params;
   try {
-    const historicalPairDetails = await currencyRepository.getHistoricalPairDetails(pair);
+    const historicalPairDetails = currencyRepository.getHistoricalPairDetails(pair);
     response.send(historicalPairDetails);
   } catch(error) {
     response.status(500).send(error);

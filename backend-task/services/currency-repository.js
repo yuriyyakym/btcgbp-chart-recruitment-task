@@ -64,10 +64,10 @@ class CurrencyRepository {
     return this.fetchPairDetails(pair);
   }
 
-  async getHistoricalPairDetails(pair) {
+  getHistoricalPairDetails(pair) {
     return this.historicalData[pair]
-      ? this.historicalData[pair]
-      : [ await this.getPairDetails(pair) ];
+      ? this.historicalData[pair].slice(0, -1)
+      : [];
   }
 }
 
