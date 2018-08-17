@@ -1,13 +1,17 @@
 const request = require('request-promise');
 
+const INITIAL_PAIRS = [ 'btcgbp' ];
 const HISTORICAL_DATA_CACHE_SIZE = 10000;
 const REFRESH_DETAILS_TIMEOUT = 30000;
 const CURRENCY_PAIR_DETAILS_ENDPOINT = 'https://api.bitfinex.com/v1/pubticker';
 
 class CurrencyRepository {
-  constructor(pairs) {
-    this.pairs = [];
-    this.historicalData = {};
+  constructor(pairs = []) {
+    this.pairs = pairs;
+    this.historicalData = pairs.reduce((result, pair) => ({
+      ...result,
+      [pair]: []
+    }), []);
     this.fetchPairDetails = this.fetchPairDetails.bind(this);
     this.fetchPairsDetails = this.fetchPairsDetails.bind(this);
     this.getActualPairValue = this.getActualPairValue.bind(this);
@@ -71,4 +75,4 @@ class CurrencyRepository {
   }
 }
 
-module.exports = new CurrencyRepository();
+module.exports = new CurrencyRepository(INITIAL_PAIRS);
