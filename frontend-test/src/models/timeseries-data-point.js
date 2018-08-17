@@ -4,7 +4,7 @@ export default class TimeseriesDataPoint {
       mid: Number(dataPoint.mid),
       bid: Number(dataPoint.bid),
       ask: Number(dataPoint.ask),
-      timestamp: Number(dataPoint.timestamp)
+      timestamp: Math.floor(Number(dataPoint.timestamp) * 1000)
     };
   }
 }

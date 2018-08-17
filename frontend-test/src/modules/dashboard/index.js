@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectTimeseries } from 'store/currency-pairs/selectors';
 import CurrencyPairChart from 'components/currency-pair-chart';
+import Section from 'components/section';
+import styles from './styles.scss';
 
 class Dashboard extends Component {
   static propTypes = {
@@ -16,8 +18,10 @@ class Dashboard extends Component {
     const { timeseries } = this.props;
 
     return (
-      <div>
-        <CurrencyPairChart timeseries={timeseries} />
+      <div className={styles.dashboard}>
+        <Section title="BTC/GBP market info">
+          <CurrencyPairChart timeseries={timeseries} />
+        </Section>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import registerServiceWorker from './registerServiceWorker';
+import './echarts-config';
 import {
   reducer as rootReducer,
   saga as rootSaga

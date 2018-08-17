@@ -1,9 +1,12 @@
 import { delay } from 'redux-saga';
 import { takeLatest, put, call } from 'redux-saga/effects';
-import { fetchCurrencyPairDetails } from 'api';
+import { fetchCurrencyPairDetails, fetchHistoricalCurrencyPairDetails } from 'api';
 import {
   CHANGE_CURRENT_PAIR,
   changeCurrentPair,
+  fetchHistoricalPairDetails,
+  fetchHistoricalPairDetailsSuccess,
+  fetchHistoricalPairDetailsFailure,
   fetchNewPairDetails,
   fetchNewPairDetailsSuccess,
   fetchNewPairDetailsFailure
@@ -17,11 +20,20 @@ export default function*() {
   yield put(changeCurrentPair(DEFAULT_PAIR));
 }
 
-function* onChangeCurrentPair({ payload: pair }) {
+function* onFetchHistoricalData(pair) {
+  try {
+    yield put(fetchHistoricalPairDetails());
+    const historicalPairDetails = yield call(fetchHistoricalCurrencyPairDetails, pair);
+    yield put(fetchHistoricalPairDetailsSuccess(historicalPairDetails));
+  } catch(error) {
+    yield put(fetchHistoricalPairDetailsFailure(error));
+  }
+}
 
+function* onPeriodicallyFetchActualPairData(pair) {
   while(true) {
-    yield put(fetchNewPairDetails());
     try {
+      yield put(fetchNewPairDetails());
       const newPairDetails = yield call(fetchCurrencyPairDetails, pair);
       yield put(fetchNewPairDetailsSuccess(newPairDetails));
     } catch(error) {
@@ -29,4 +41,9 @@ function* onChangeCurrentPair({ payload: pair }) {
     }
     yield delay(REFRESH_DETAILS_TIMEOUT);
   }
+}
+
+function* onChangeCurrentPair({ payload: pair }) {
+  yield* onFetchHistoricalData(pair);
+  yield* onPeriodicallyFetchActualPairData(pair);
 }
