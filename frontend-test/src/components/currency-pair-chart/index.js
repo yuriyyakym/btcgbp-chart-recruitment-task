@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
-import { colorRed } from 'palette';
+import { primaryChartColor } from 'palette';
 
 class CurrencyPairChart extends Component {
   static propTypes = {
@@ -22,16 +22,21 @@ class CurrencyPairChart extends Component {
         splitLine: {
             show: false
         },
+        axisLabel: {
+          fontWeight: 300
+        },
         axisLine: {
           lineStyle: {
             width: 0.5
           } 
-        },
-        boundaryGap: [ '20%', '20%' ],
+        }
       },
       yAxis: {
         type: 'value',
         min: 'dataMin',
+        axisLabel: {
+          fontWeight: 300
+        },
         splitLine: {
           lineStyle: {
             width: 0.5,
@@ -49,7 +54,7 @@ class CurrencyPairChart extends Component {
         {
           type: 'line',
           lineStyle: {
-            color: colorRed
+            color: primaryChartColor
           },
           symbol: 'none',
           data: timeseries.map((dataPoint) => [
