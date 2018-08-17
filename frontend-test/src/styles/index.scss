@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+:global {
+  body {
+    margin: 0;
+    padding: 0;
+    color: $color-light;
+    background-color: $color-dark;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+  }
+}

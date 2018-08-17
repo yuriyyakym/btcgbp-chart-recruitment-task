@@ -9,7 +9,7 @@ import {
   saga as rootSaga
 } from './store';
 import App from 'modules/app';
-import './index.css';
+import './styles/index.scss';
 
 const sagaMiddleware = createSagaMiddleware();
 const reduxMiddlewares = [ sagaMiddleware ];
