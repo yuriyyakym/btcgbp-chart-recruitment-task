@@ -1,14 +1,24 @@
 'use strict';
 
-// This is a custom Jest transformer turning style imports into empty objects.
-// http://facebook.github.io/jest/docs/en/webpack.html
-
 module.exports = {
   process() {
-    return 'module.exports = {};';
+    return `
+      const proxy = new Proxy({}, {
+        get(obj, prop) {
+          return prop;
+        }
+      });
+
+      Object.defineProperty(exports, '__esModule', {
+        value: proxy
+      });
+
+      Object.defineProperty(exports, 'default', {
+        value: proxy
+      });
+    `;
   },
   getCacheKey() {
-    // The output is always the same.
-    return 'cssTransform';
+    return 'css-proxy';
   },
 };
