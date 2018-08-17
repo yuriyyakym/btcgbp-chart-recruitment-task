@@ -1,0 +1,25 @@
+.trendArrow {
+  display: inline-block;
+  line-height: 20px;
+
+  .arrow {
+    font-size: 20px;
+  }
+
+  &.rising {
+    .arrow {
+      color: $color-green;
+    }
+  }
+
+  &.falling {
+    .arrow {
+      color: $color-red;
+    }
+  }
+
+  .change {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}

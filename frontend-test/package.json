@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "echarts": "^4.1.0",
     "echarts-for-react": "^2.0.14",
     "react": "^16.4.1",

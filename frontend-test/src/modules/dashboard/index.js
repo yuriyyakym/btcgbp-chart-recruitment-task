@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectTimeseries } from 'store/currency-pairs/selectors';
+import {
+  selectTimeseries,
+  selectTrendType,
+  selectTrendChangePercentage
+} from 'store/currency-pairs/selectors';
 import CurrencyPairChart from 'components/currency-pair-chart';
+import TrendArrow from 'components/trend-arrow';
 import Section from 'components/section';
 import styles from './styles.scss';
 
@@ -15,11 +20,20 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { timeseries } = this.props;
+    const { timeseries, trendType, trendChangePercentage } = this.props;
 
     return (
       <div className={styles.dashboard}>
-        <Section title="BTC/GBP market info">
+        <Section
+          title={(
+            <Fragment>
+              BTC/GBP market info
+              <TrendArrow
+                className={styles.trend}
+                change={trendChangePercentage}
+                trendType={trendType} />
+            </Fragment>
+          )}>
           <CurrencyPairChart timeseries={timeseries} />
         </Section>
       </div>
@@ -28,7 +42,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  timeseries: selectTimeseries(state)
+  timeseries: selectTimeseries(state),
+  trendType: selectTrendType(state),
+  trendChangePercentage: selectTrendChangePercentage(state)
 });
 
 export default connect(mapStateToProps)(Dashboard);

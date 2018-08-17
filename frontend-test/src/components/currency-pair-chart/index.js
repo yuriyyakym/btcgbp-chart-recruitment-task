@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
-import echarts from 'echarts';
-import { colorPrimary } from 'palette';
+import { colorRed } from 'palette';
 
 class CurrencyPairChart extends Component {
   static propTypes = {
@@ -50,7 +49,7 @@ class CurrencyPairChart extends Component {
         {
           type: 'line',
           lineStyle: {
-            color: colorPrimary
+            color: colorRed
           },
           symbol: 'none',
           data: timeseries.map((dataPoint) => [
@@ -62,15 +61,7 @@ class CurrencyPairChart extends Component {
     };
 
     return (
-      <div>
-        <ReactEcharts
-          echarts={echarts}
-          option={option}
-          theme="dark" />
-        <pre>
-          {JSON.stringify(timeseries, 0, 2)}
-        </pre>
-      </div>
+      <ReactEcharts option={option} theme="dark" />
     );
   }
 }

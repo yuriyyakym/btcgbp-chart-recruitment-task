@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { TREND_TYPE } from 'constants';
+import { TREND_TYPE } from 'constants.js';
 
 const selectRoot = (state) => state.currencyPairs;
 
@@ -33,7 +33,7 @@ const selectNextToLastTimeseriesPoint = createSelector(
 export const selectTrendType = createSelector(
   [ selectLastTimeseriesPoint, selectNextToLastTimeseriesPoint ],
   (lastPoint, nextToLastPoint) => {
-    if (!nextToLastPoint) {
+    if (!nextToLastPoint || lastPoint.value === nextToLastPoint.value) {
       return TREND_TYPE.NONE;
     }
 
@@ -52,6 +52,8 @@ export const selectTrendChangePercentage = createSelector(
       return null;
     }
 
-    return ((lastPoint.value - nextToLastPoint.value) / nextToLastPoint.value * 100).toFixed(2);
+    console.log(lastPoint, nextToLastPoint);
+
+    return (lastPoint.value - nextToLastPoint.value) / nextToLastPoint.value * 100;
   }
 );
