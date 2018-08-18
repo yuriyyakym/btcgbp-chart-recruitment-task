@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Dashboard from 'modules/dashboard';
-import './styles.css';
 
 class App extends Component {
   render() {

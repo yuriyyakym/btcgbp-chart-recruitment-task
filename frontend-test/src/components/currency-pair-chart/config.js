@@ -5,9 +5,7 @@ export default ({ timeseries }) => ({
     backgroundColor: 'transparent',
     tooltip: {
       trigger: 'axis',
-      formatter: function ([ hoveredDataPoint ]) {
-        return hoveredDataPoint.axisValueLabel + ' : ' + hoveredDataPoint.value[1];
-      },
+      formatter: ([ hoveredDataPoint ]) => hoveredDataPoint.axisValueLabel + ' : ' + hoveredDataPoint.value[1],
       axisPointer: {
         animation: false
       }
