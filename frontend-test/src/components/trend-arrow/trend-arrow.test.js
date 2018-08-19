@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { TREND_TYPE } from 'constants.js';
 import { getTrendTypeByChange } from './utils';
 import TrendArrow from './index';
@@ -20,12 +19,6 @@ describe('[Component: TrendArrow] utils', () => {
 });
 
 describe('[Component: TrendArrow]', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<TrendArrow change={0.2} />, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
-
   it('should format positive change value', () => {
     const component = shallow(<TrendArrow change={0.2} />);
     const content = component.text();

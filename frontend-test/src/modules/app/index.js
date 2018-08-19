@@ -4,7 +4,7 @@ import Dashboard from 'modules/dashboard';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Dashboard />
       </div>
     );

@@ -14,7 +14,7 @@ CurrencyPairChart.propTypes = {
   timeseries: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.number,
     timestamp: PropTypes.number
-  }))
+  })).isRequired
 };
 
 export default CurrencyPairChart;
