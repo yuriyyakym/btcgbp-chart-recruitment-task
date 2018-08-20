@@ -1,4 +1,11 @@
 .trend {
-  display: inline-block;
-  margin-left: 20px;
+  display: block;
+  margin-left: 0;
+  margin-top: $spacing-xs;
+
+  @include sm {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 0;
+  }
 }
