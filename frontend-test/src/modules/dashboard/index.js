@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -8,17 +8,13 @@ import {
 import BtcGbpSection from './btc-gbp-section';
 import styles from './styles.scss';
 
-class Dashboard extends Component {
-  render() {
-    const { timeseries, trendChangePercentage } = this.props;
-
-    return (
-      <div className={styles.dashboard}>
-        <BtcGbpSection timeseries={timeseries} trendChangePercentage={trendChangePercentage} />
-      </div>
-    );
-  }
-}
+const Dashboard = ({ timeseries, trendChangePercentage }) => (
+  <div className={styles.dashboard}>
+    <BtcGbpSection
+      timeseries={timeseries}
+      trendChangePercentage={trendChangePercentage} />
+  </div>
+);
 
 Dashboard.propTypes = {
   timeseries: PropTypes.arrayOf(PropTypes.shape({
